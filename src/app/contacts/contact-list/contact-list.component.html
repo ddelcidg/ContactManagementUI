@@ -1,0 +1,33 @@
+<div class="contact-list-container">
+  <h2>Contact List</h2>
+
+  <button class="btn btn-success" routerLink="/contacts/create">Add New Contact</button>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let contact of contacts">
+        <td>{{ contact.firstName }}</td>
+        <td>{{ contact.lastName }}</td>
+        <td>{{ contact.email }}</td>
+        <td>{{ contact.phoneNumber }}</td>
+        <td>
+          <button class="btn btn-primary" [routerLink]="['/contacts/edit', contact.id]">Edit</button>
+          <button class="btn btn-danger" (click)="deleteContact(contact.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="contacts.length === 0" class="no-contacts">
+    No contacts available.
+  </div>
+</div>
